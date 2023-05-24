@@ -3,7 +3,7 @@ import generateBinaryTree from "./logics/BinaryTree"
 function BinaryTree({ input }) {
 
   if (input.length === 0) {
-    return ''
+    return null
   }
 
   const binaryTreeObject = generateBinaryTree(input)
@@ -13,7 +13,7 @@ function BinaryTree({ input }) {
     const clickedSpan = e.target
 
     if (clickedSpan.tagName !== 'SPAN') {
-      return
+      return null
     }
 
     // Remove previous highlighted node if there
@@ -48,7 +48,7 @@ function BinaryTree({ input }) {
 
 function generateHTML(node) {
   if (node === null) {
-    return ''
+    return null
   }
 
   const leftHTML = generateHTML(node.left)
