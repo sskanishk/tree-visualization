@@ -18,7 +18,7 @@ function App() {
       invalidInputAlert()
       return
     }
-    const newArray = inputValue?.split(",")
+    const newArray = inputValue?.split(",").map((num)=>Number(num))
     if(newArray) {
       setInputArray(() => newArray)
     } else {
