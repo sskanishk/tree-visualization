@@ -1,4 +1,4 @@
-function Tree({ input }) {
+function BinaryTree({ input }) {
 
   if (input.length === 0) {
     return ''
@@ -93,4 +93,4 @@ function generateBinaryTree(arr) {
   return root
 }
 
-export default Tree
+export default BinaryTree

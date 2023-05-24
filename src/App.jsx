@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Tree from './Tree'
+import BinaryTree from './BinaryTree'
 
 function App() {
 
@@ -47,7 +47,7 @@ function App() {
       </div>
       {
         inputArray.length > 0
-          ? <Tree input={inputArray} />
+          ? <BinaryTree input={inputArray} />
           : <p>No Tree Found!</p>
       }
     </div>
