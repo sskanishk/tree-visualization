@@ -1,4 +1,5 @@
-import generateBinaryTree from "./logics/BinaryTree"
+import generateHTML from "../helper/generatehtml"
+import generateBinaryTree from "../logics/BinaryTree"
 
 function BinaryTree({ input }) {
 
@@ -43,23 +44,6 @@ function BinaryTree({ input }) {
         {treeHTML}
       </div>
     </article>
-  )
-}
-
-function generateHTML(node) {
-  if (node === null) {
-    return null
-  }
-
-  const leftHTML = generateHTML(node.left)
-  const rightHTML = generateHTML(node.right)
-
-  return (
-    <>
-      <span>{node.value}</span>
-      <div>{leftHTML}</div>
-      <div>{rightHTML}</div>
-    </>
   )
 }
 

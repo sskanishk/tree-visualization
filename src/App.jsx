@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import BinaryTree from './BinaryTree'
+import BinaryTree from './Tree/BinaryTree'
 
 function App() {
 
