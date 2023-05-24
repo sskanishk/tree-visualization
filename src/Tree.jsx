@@ -1,35 +1,43 @@
 function Tree({ input }) {
 
   if (input.length === 0) {
-    return '';
+    return ''
   }
 
   const binaryTreeObject = generateBinaryTree(input)
   const treeHTML = generateHTML(binaryTreeObject)
 
-  const clickHandler = (e) => {
-    console.log("e ", e)
-    console.log("get", e.target)
-    console.log("get", e.currentNode)
-    console.log("get", e.currentTarget)
-    console.log("get", e.current)
+  const onNodeClick = (e) => {
+    const clickedSpan = e.target
 
-
-    const clickedSpan = e.target;
-    const spansBelow = Array.from(clickedSpan.parentNode.querySelectorAll('span'));
-  
-    const index = spansBelow.indexOf(clickedSpan);
-    if (index !== -1) {
-      const spansToHighlight = spansBelow.slice(index);
-      spansToHighlight.forEach((span) => {
-        span.classList.add('yourClassName');
-      });
+    if (clickedSpan.tagName !== 'SPAN') {
+      return
     }
+
+    // Remove previous highlighted node if there
+    const highlightedElements = document.querySelectorAll('.highlight')
+    highlightedElements.forEach((element) => {
+      element.classList.remove('highlight')
+    })
+    
+    // Add class to node which is clicked
+    clickedSpan.classList.add('highlight')
+
+    // Find all parents elements and add class highlight
+    let currentElement = clickedSpan.parentElement
+    while (currentElement.parentElement) {
+      const ancestorSpan = currentElement.parentElement.querySelector('span')
+      if (ancestorSpan) {
+        ancestorSpan.classList.add('highlight')
+      }
+      currentElement = currentElement.parentElement
+    }
+
   }
 
   return (
-    <article className="binary-tree">
-      <div onClick={clickHandler}>
+    <article className="tree">
+      <div onClick={onNodeClick}>
         {treeHTML}
       </div>
     </article>
@@ -38,15 +46,11 @@ function Tree({ input }) {
 
 function generateHTML(node) {
   if (node === null) {
-    return '';
+    return ''
   }
 
   const leftHTML = generateHTML(node.left)
   const rightHTML = generateHTML(node.right)
-
-
-
-
 
   return (
     <>
@@ -59,111 +63,34 @@ function generateHTML(node) {
 
 function generateBinaryTree(arr) {
   if (arr.length === 0) {
-    return null;
+    return null
   }
 
-  const root = { value: arr[0], left: null, right: null };
+  const root = { value: arr[0], left: null, right: null }
 
   for (let i = 1; i < arr.length; i++) {
-    let currentNode = root;
-    let newNode = { value: arr[i], left: null, right: null };
+    let currentNode = root
+    let newNode = { value: arr[i], left: null, right: null }
 
     while (true) {
       if (arr[i] < currentNode.value) {
         if (currentNode.left === null) {
-          currentNode.left = newNode;
-          break;
+          currentNode.left = newNode
+          break
         } else {
-          currentNode = currentNode.left;
+          currentNode = currentNode.left
         }
       } else {
         if (currentNode.right === null) {
-          currentNode.right = newNode;
-          break;
+          currentNode.right = newNode
+          break
         } else {
-          currentNode = currentNode.right;
+          currentNode = currentNode.right
         }
       }
     }
   }
-
-  return root;
+  return root
 }
 
-
 export default Tree
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function Tree() {
-
-//   var input = [4,2,6,3,5,7]
-
-//   if (input.length === 0) {
-//     return '';
-//   }
-
-//   const rootNode = createNode(input, 0);
-
-//   const treeHTML = generateHTML(rootNode);
-
-//   return (
-//     <article className="binary-tree">
-//       <div>
-//         {treeHTML}
-//       </div>
-//     </article>
-//   )
-// }
-
-// function createNode(arr, index) {
-//   if (index >= arr.length) {
-//     return null;
-//   }
-
-//   const value = arr[index];
-//   const leftChildIndex = 2 * index + 1;
-//   const rightChildIndex = 2 * index + 2;
-
-//   return {
-//     value,
-//     left: createNode(arr, leftChildIndex),
-//     right: createNode(arr, rightChildIndex),
-//   };
-// }
-
-
-// function generateHTML(node) {
-//   if (node === null) {
-//     return '';
-//   }
-
-//   const leftHTML = generateHTML(node.left);
-//   const rightHTML = generateHTML(node.right);
-
-//   return (
-//     <>
-//       <span>{node.value}</span>
-//       <div>{leftHTML}</div>
-//       <div>{rightHTML}</div>
-//     </>
-//   )
-// }
-
-
-// export default Tree
