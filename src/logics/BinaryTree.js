@@ -1,32 +1,28 @@
 function generateBinaryTree(arr) {
-    if (arr.length === 0) {
+    if (!arr.length) {
         return null
     }
 
     const root = { value: arr[0], left: null, right: null }
+    const queue = [root]
+    let i = 1
 
-    for (let i = 1; i < arr.length; i++) {
-        let currentNode = root
-        let newNode = { value: arr[i], left: null, right: null }
+    while (i < arr.length) {
+        const node = queue.shift()
 
-        while (true) {
-            if (arr[i] < currentNode.value) {
-                if (currentNode.left === null) {
-                    currentNode.left = newNode
-                    break
-                } else {
-                    currentNode = currentNode.left
-                }
-            } else {
-                if (currentNode.right === null) {
-                    currentNode.right = newNode
-                    break
-                } else {
-                    currentNode = currentNode.right
-                }
-            }
+        if (arr[i] !== null) {
+            node.left = { value: arr[i], left: null, right: null }
+            queue.push(node.left)
         }
+        i++
+
+        if (i < arr.length && arr[i] !== null) {
+            node.right = { value: arr[i], left: null, right: null }
+            queue.push(node.right)
+        }
+        i++
     }
+
     return root
 }
 
