@@ -1,6 +1,8 @@
 # tree-visualization
 
-![image](https://github.com/sskanishk/tree-visualization/assets/29313203/40108925-91d2-47a8-9d86-bbc8c7e44101)
+<!-- ![image](https://github.com/sskanishk/tree-visualization/assets/29313203/40108925-91d2-47a8-9d86-bbc8c7e44101) -->
+![image](https://github.com/sskanishk/tree-visualization/assets/29313203/8fd18b0c-6b8b-4814-804b-3228e316e5e2)
+
 
 This project demonstrates the visualization of a binary tree using HTML, CSS, and React. It allows you to input an array of nodes in a comma-separated format and renders the binary tree structure on the screen. When you click on a leaf node, it highlights all its ancestor nodes up to the root.
 
